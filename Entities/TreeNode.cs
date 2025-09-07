@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using TestAPI.Common;
+using TestAPI.Entities.Base;
 
 namespace TestAPI.Entities
 {
@@ -13,21 +13,21 @@ namespace TestAPI.Entities
         /// Node name required field
         /// </summary>
         [Required]
-        public string Name { get; set; }
+        public required string Name { get; set; }
 
         /// <summary>
         /// Foreign key to parent node (for root - null)
         /// </summary>
-        public int? ParentId { get; set; }
+        public long? ParentNodeId { get; set; }
 
-        [ForeignKey("ParentId")]
-        public TreeNode Parent { get; set; }
+        [ForeignKey("ParentNodeId")]
+        public TreeNode? ParentNode { get; set; }
 
         /// <summary>
         /// Foreign key to Tree ID
         /// </summary>
         [Required]
-        public int TreeId { get; set; }
+        public long TreeId { get; set; }
 
         [ForeignKey("TreeId")]
         public Tree Tree { get; set; }
@@ -35,6 +35,6 @@ namespace TestAPI.Entities
         /// <summary>
         /// Child nodes collection
         /// </summary>
-        public ICollection<TreeNode> Children { get; set; } = new List<TreeNode>();
+        public IList<TreeNode> Children { get; set; } = new List<TreeNode>();
     }
 }

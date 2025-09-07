@@ -1,8 +1,8 @@
-﻿namespace TestAPI.Common
+﻿namespace TestAPI.Entities.Base
 {
     public interface IBaseEntity
     {
-        int Id { get; set; }
+        long Id { get; set; }
         string? CreatedBy { get; set; }
         string? ModifiedBy { get; set; }
         DateTime? CreatedOnUtc { get; set; }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TestAPI.Entities;
+using TestAPI.Entities.Journals;
 
 namespace TestAPI.Data
 {
@@ -9,5 +10,6 @@ namespace TestAPI.Data
 
         public DbSet<Tree> Trees { get; set; }
         public DbSet<TreeNode> TreeNodes { get; set; }
+        public DbSet<Journal> Journals { get; set; }
     }
 }

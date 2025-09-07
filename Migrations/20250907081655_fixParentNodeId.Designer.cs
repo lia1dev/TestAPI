@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using TestAPI.Data;
@@ -11,9 +12,11 @@ using TestAPI.Data;
 namespace TestAPI.Migrations
 {
     [DbContext(typeof(TreeDbContext))]
-    partial class TreeDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250907081655_fixParentNodeId")]
+    partial class fixParentNodeId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

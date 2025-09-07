@@ -1,11 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace TestAPI.Common
+namespace TestAPI.Entities.Base
 {
     public abstract class BaseEntity : IBaseEntity
     {
         [Key]
-        public int Id { get; set; }
+        public long Id { get; set; }
         public string? CreatedBy { get; set; }
         public string? ModifiedBy { get; set; }
         public DateTime? CreatedOnUtc { get; set; } = DateTime.UtcNow;

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using TestAPI.Data;
@@ -11,9 +12,11 @@ using TestAPI.Data;
 namespace TestAPI.Migrations
 {
     [DbContext(typeof(TreeDbContext))]
-    partial class TreeDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250907051251_addJournal")]
+    partial class addJournal
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -107,6 +110,9 @@ namespace TestAPI.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<long?>("ParentId")
+                        .HasColumnType("bigint");
+
                     b.Property<long?>("ParentNodeId")
                         .HasColumnType("bigint");
 
@@ -115,7 +121,7 @@ namespace TestAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ParentNodeId");
+                    b.HasIndex("ParentId");
 
                     b.HasIndex("TreeId");
 
@@ -126,7 +132,7 @@ namespace TestAPI.Migrations
                 {
                     b.HasOne("TestAPI.Entities.TreeNode", "ParentNode")
                         .WithMany("Children")
-                        .HasForeignKey("ParentNodeId");
+                        .HasForeignKey("ParentId");
 
                     b.HasOne("TestAPI.Entities.Tree", "Tree")
                         .WithMany("Nodes")

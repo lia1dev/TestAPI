@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using TestAPI.Data;
@@ -11,9 +12,11 @@ using TestAPI.Data;
 namespace TestAPI.Migrations
 {
     [DbContext(typeof(TreeDbContext))]
-    partial class TreeDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250906032726_fixDbEntities")]
+    partial class fixDbEntities
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,38 +24,6 @@ namespace TestAPI.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
-
-            modelBuilder.Entity("TestAPI.Entities.Journals.Journal", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("text");
-
-                    b.Property<DateTime?>("CreatedOnUtc")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<long>("EventId")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("ModifiedBy")
-                        .HasColumnType("text");
-
-                    b.Property<DateTime?>("ModifiedOnUtc")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("Text")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Journals");
-                });
 
             modelBuilder.Entity("TestAPI.Entities.Tree", b =>
                 {
@@ -107,6 +78,9 @@ namespace TestAPI.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<long?>("ParentId")
+                        .HasColumnType("bigint");
+
                     b.Property<long?>("ParentNodeId")
                         .HasColumnType("bigint");
 
@@ -115,7 +89,7 @@ namespace TestAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ParentNodeId");
+                    b.HasIndex("ParentId");
 
                     b.HasIndex("TreeId");
 
@@ -126,7 +100,7 @@ namespace TestAPI.Migrations
                 {
                     b.HasOne("TestAPI.Entities.TreeNode", "ParentNode")
                         .WithMany("Children")
-                        .HasForeignKey("ParentNodeId");
+                        .HasForeignKey("ParentId");
 
                     b.HasOne("TestAPI.Entities.Tree", "Tree")
                         .WithMany("Nodes")
