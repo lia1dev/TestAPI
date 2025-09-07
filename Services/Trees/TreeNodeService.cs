@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using TestAPI.Entities;
+using TestAPI.Entities.Trees;
 using TestAPI.Helpers;
 using TestAPI.Repositories;
 

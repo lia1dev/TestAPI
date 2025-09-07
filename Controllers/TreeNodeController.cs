@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using TestAPI.Entities;
+using TestAPI.Entities.Trees;
 using TestAPI.Helpers;
 using TestAPI.Services.Trees;
 

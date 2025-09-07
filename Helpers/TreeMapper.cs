@@ -1,4 +1,4 @@
-﻿using TestAPI.Entities;
+﻿using TestAPI.Entities.Trees;
 using TestAPI.Models;
 
 namespace TestAPI.Helpers

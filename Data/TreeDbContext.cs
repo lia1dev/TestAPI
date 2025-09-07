@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using TestAPI.Entities;
 using TestAPI.Entities.Journals;
+using TestAPI.Entities.Trees;
 
 namespace TestAPI.Data
 {

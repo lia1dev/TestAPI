@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using TestAPI.Entities.Base;
 
-namespace TestAPI.Entities
+namespace TestAPI.Entities.Trees
 {
     /// <summary>
     /// Tree node entity

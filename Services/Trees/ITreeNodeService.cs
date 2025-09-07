@@ -1,4 +1,4 @@
-﻿using TestAPI.Entities;
+﻿using TestAPI.Entities.Trees;
 
 namespace TestAPI.Services.Trees
 {

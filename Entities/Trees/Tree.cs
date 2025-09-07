@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using TestAPI.Entities.Base;
 
-namespace TestAPI.Entities
+namespace TestAPI.Entities.Trees
 {
     /// <summary>
     /// Tree entity
