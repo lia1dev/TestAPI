@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TestAPI.Entities;
+using TestAPI.Handlers;
 
 namespace TestAPI.Controllers
 {
@@ -18,6 +19,12 @@ namespace TestAPI.Controllers
             var token = Convert.ToBase64String(Guid.NewGuid().ToByteArray());
 
             return Ok(new TokenInfo { Token = token });
+        }
+
+        [HttpGet]
+        public IActionResult GetError()
+        {
+            throw new SecureException("Secure Exception occurred");
         }
     }
 }

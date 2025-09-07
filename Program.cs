@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using NLog.Web;
 using TestAPI.Data;
 using TestAPI.Entities;
 using TestAPI.Entities.Journals;
@@ -52,6 +53,9 @@ builder.Services.AddRouting(options =>
     options.LowercaseQueryStrings = true;
     options.AppendTrailingSlash = true;
 });
+
+builder.Logging.ClearProviders();
+builder.Host.UseNLog();
 
 var app = builder.Build();
 

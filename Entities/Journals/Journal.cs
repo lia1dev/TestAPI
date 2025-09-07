@@ -10,5 +10,7 @@ namespace TestAPI.Entities.Journals
 
         [Required]
         public required string Text { get; set; }
+
+        public string LogLevel { get; set; }
     }
 }
